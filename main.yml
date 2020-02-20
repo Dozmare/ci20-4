@@ -1,0 +1,17 @@
+name: Test
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: install composer
+        run:  composer install
+      - name: Run test unit
+        run: bin/phpunit tests/Unit
+      - name: Run test Intégration
+        run: bin/phpunit tests/Integration
+      - name: Run test Fonctionnel
+        run:  php vendor/bin/behat
